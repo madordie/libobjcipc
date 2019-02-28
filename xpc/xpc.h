@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2011 Apple Inc. All rights reserved. 
+// Copyright (c) 2009-2011 Apple Inc. All rights reserved.
 
 #ifndef __XPC_H__
 #define __XPC_H__
@@ -22,13 +22,13 @@
 #define __XPC_INDIRECT__
 #endif // __XPC_INDIRECT__
 
-#include <xpc/base.h>
+#include "base.h"
 
 XPC_ASSUME_NONNULL_BEGIN
 __BEGIN_DECLS
 
 #ifndef __OSX_AVAILABLE_STARTING
-#define __OSX_AVAILABLE_STARTING(x, y)
+#define // __OSX_AVAILABLE_STARTING(x, y)
 #endif // __OSX_AVAILABLE_STARTING
 
 #define XPC_API_VERSION 20121012
@@ -78,7 +78,7 @@ typedef void * xpc_object_t;
 #define XPC_DECL(name) typedef struct _##name##_s * name##_t
 #define XPC_GLOBAL_OBJECT(object) (&(object))
 #define XPC_RETURNS_RETAINED
-#endif // OS_OBJECT_USE_OBJC 
+#endif // OS_OBJECT_USE_OBJC
 
 /*!
  * @typedef xpc_handler_t
@@ -94,7 +94,7 @@ typedef void * xpc_object_t;
  */
 #if __BLOCKS__
 typedef void (^xpc_handler_t)(xpc_object_t object);
-#endif // __BLOCKS__ 
+#endif // __BLOCKS__
 
 /*!
  * @define XPC_TYPE_CONNECTION
@@ -103,7 +103,7 @@ typedef void (^xpc_handler_t)(xpc_object_t object);
  * connection carries the credentials of the remote service provider.
  */
 #define XPC_TYPE_CONNECTION (&_xpc_type_connection)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_connection);
 XPC_DECL(xpc_connection);
@@ -127,10 +127,10 @@ typedef void (*xpc_connection_handler_t)(xpc_connection_t connection);
  * associated with it. Thus, it is safe to pass an endpoint in a message. Upon
  * receiving an endpoint, the recipient can use
  * xpc_connection_create_from_endpoint() to create as many distinct connections
- * as desired. 
+ * as desired.
  */
 #define XPC_TYPE_ENDPOINT (&_xpc_type_endpoint)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_endpoint);
 XPC_DECL(xpc_endpoint);
@@ -143,7 +143,7 @@ XPC_DECL(xpc_endpoint);
  * do not accept NULL.
  */
 #define XPC_TYPE_NULL (&_xpc_type_null)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_null);
 
@@ -152,7 +152,7 @@ XPC_TYPE(_xpc_type_null);
  * A type representing a Boolean value.
  */
 #define XPC_TYPE_BOOL (&_xpc_type_bool)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_bool);
 
@@ -162,7 +162,7 @@ XPC_TYPE(_xpc_type_bool);
  * object against this constant to determine its value.
  */
 #define XPC_BOOL_TRUE XPC_GLOBAL_OBJECT(_xpc_bool_true)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 const struct _xpc_bool_s _xpc_bool_true;
 
@@ -172,7 +172,7 @@ const struct _xpc_bool_s _xpc_bool_true;
  * object against this constant to determine its value.
  */
 #define XPC_BOOL_FALSE XPC_GLOBAL_OBJECT(_xpc_bool_false)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 const struct _xpc_bool_s _xpc_bool_false;
 
@@ -181,7 +181,7 @@ const struct _xpc_bool_s _xpc_bool_false;
  * A type representing a signed, 64-bit integer value.
  */
 #define XPC_TYPE_INT64 (&_xpc_type_int64)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_int64);
 
@@ -190,7 +190,7 @@ XPC_TYPE(_xpc_type_int64);
  * A type representing an unsigned, 64-bit integer value.
  */
 #define XPC_TYPE_UINT64 (&_xpc_type_uint64)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_uint64);
 
@@ -199,7 +199,7 @@ XPC_TYPE(_xpc_type_uint64);
  * A type representing an IEEE-compliant, double-precision floating point value.
  */
 #define XPC_TYPE_DOUBLE (&_xpc_type_double)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_double);
 
@@ -210,7 +210,7 @@ XPC_TYPE(_xpc_type_double);
  * or leap seconds.
  */
 #define XPC_TYPE_DATE (&_xpc_type_date)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_date);
 
@@ -219,7 +219,7 @@ XPC_TYPE(_xpc_type_date);
  * A type representing a an arbitrary buffer of bytes.
  */
 #define XPC_TYPE_DATA (&_xpc_type_data)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_data);
 
@@ -228,16 +228,16 @@ XPC_TYPE(_xpc_type_data);
  * A type representing a NUL-terminated C-string.
  */
 #define XPC_TYPE_STRING (&_xpc_type_string)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_string);
 
 /*!
  * @define XPC_TYPE_UUID
- * A type representing a Universally Unique Identifier as defined by uuid(3). 
+ * A type representing a Universally Unique Identifier as defined by uuid(3).
  */
 #define XPC_TYPE_UUID (&_xpc_type_uuid)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_uuid);
 
@@ -246,7 +246,7 @@ XPC_TYPE(_xpc_type_uuid);
  * A type representing a POSIX file descriptor.
  */
 #define XPC_TYPE_FD (&_xpc_type_fd)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_fd);
 
@@ -255,7 +255,7 @@ XPC_TYPE(_xpc_type_fd);
  * A type representing a region of shared memory.
  */
 #define XPC_TYPE_SHMEM (&_xpc_type_shmem)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_shmem);
 
@@ -267,7 +267,7 @@ XPC_TYPE(_xpc_type_shmem);
  * accommodate more objects.
  */
 #define XPC_TYPE_ARRAY (&_xpc_type_array)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_array);
 
@@ -278,7 +278,7 @@ XPC_TYPE(_xpc_type_array);
  * as needed to accommodate more key/value pairs.
  */
 #define XPC_TYPE_DICTIONARY (&_xpc_type_dictionary)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_dictionary);
 
@@ -296,7 +296,7 @@ XPC_TYPE(_xpc_type_dictionary);
  * XPC_ERROR_KEY_DESCRIPTION.
  */
 #define XPC_TYPE_ERROR (&_xpc_type_error)
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 XPC_TYPE(_xpc_type_error);
 
@@ -306,7 +306,7 @@ XPC_TYPE(_xpc_type_error);
  * that describes the error in a human-readable way.
  */
 #define XPC_ERROR_KEY_DESCRIPTION _xpc_error_key_description
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 const char * const _xpc_error_key_description;
 
@@ -316,17 +316,17 @@ const char * const _xpc_error_key_description;
  * object that describes the event.
  */
 #define XPC_EVENT_KEY_NAME _xpc_event_key_name
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 const char * const _xpc_event_key_name;
 
 XPC_ASSUME_NONNULL_END
 #ifndef __XPC_BUILDING_XPC__
-#include <xpc/endpoint.h>
-#include <xpc/debug.h>
+#include "endpoint.h"
+#include "debug.h"
 #if __BLOCKS__
-#include <xpc/connection.h>
-#include <xpc/activity.h>
+#include "connection.h"
+#include "activity.h"
 #endif // __BLOCKS__
 #undef __XPC_INDIRECT__
 #include <launch.h>
@@ -350,7 +350,7 @@ XPC_ASSUME_NONNULL_BEGIN
  * Calls to xpc_retain() must be balanced with calls to xpc_release()
  * to avoid leaking memory.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 xpc_object_t
 xpc_retain(xpc_object_t object);
@@ -375,7 +375,7 @@ xpc_retain(xpc_object_t object);
  * it is the caller's responsibility to call xpc_release() on those objects when
  * they are no longer needed.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 void
 xpc_release(xpc_object_t object);
@@ -398,7 +398,7 @@ xpc_release(xpc_object_t object);
  * An opaque pointer describing the type of the object. This pointer is suitable
  * direct comparison to exported type constants with the equality operator.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL_ALL XPC_WARN_RESULT
 xpc_type_t
 xpc_get_type(xpc_object_t object);
@@ -423,7 +423,7 @@ xpc_get_type(xpc_object_t object);
  * The object returned is not necessarily guaranteed to be a new object, and
  * whether it is will depend on the implementation of the object being copied.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL_ALL XPC_WARN_RESULT XPC_RETURNS_RETAINED
 xpc_object_t _Nullable
 xpc_copy(xpc_object_t object);
@@ -444,14 +444,14 @@ xpc_copy(xpc_object_t object);
  * Returns true if the objects are equal, otherwise false. Two objects must be
  * of the same type in order to be equal.
  *
- * For two arrays to be equal, they must contain the same values at the 
+ * For two arrays to be equal, they must contain the same values at the
  * same indexes. For two dictionaries to be equal, they must contain the same
  * values for the same keys.
  *
  * Two objects being equal implies that their hashes (as returned by xpc_hash())
  * are also equal.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2 XPC_WARN_RESULT
 bool
 xpc_equal(xpc_object_t object1, xpc_object_t object2);
@@ -470,11 +470,11 @@ xpc_equal(xpc_object_t object1, xpc_object_t object2);
  * The calculated hash value.
  *
  * @discussion
- * Note that the computed hash values for any particular type and value of an 
+ * Note that the computed hash values for any particular type and value of an
  * object can change from across releases and platforms and should not be
  * assumed to be constant across all time and space or stored persistently.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_WARN_RESULT
 size_t
 xpc_hash(xpc_object_t object);
@@ -492,7 +492,7 @@ xpc_hash(xpc_object_t object);
  * A string describing object which contains information useful for debugging.
  * This string should be disposed of with free(3) when done.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_WARN_RESULT XPC_NONNULL1
 char *
 xpc_copy_description(xpc_object_t object);
@@ -508,7 +508,7 @@ xpc_copy_description(xpc_object_t object);
  * @result
  * A new null object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_null_create(void);
@@ -524,9 +524,9 @@ xpc_null_create(void);
  * The Boolean primitive value which is to be boxed.
  *
  * @result
- * A new Boolean object. 
+ * A new Boolean object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_bool_create(bool value);
@@ -544,7 +544,7 @@ xpc_bool_create(bool value);
  * The underlying Boolean value or false if the given object was not an XPC
  * Boolean object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 bool
 xpc_bool_get_value(xpc_object_t xbool);
@@ -562,7 +562,7 @@ xpc_bool_get_value(xpc_object_t xbool);
  * @result
  * A new signed integer object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_int64_create(int64_t value);
@@ -580,7 +580,7 @@ xpc_int64_create(int64_t value);
  * The underlying signed 64-bit value or 0 if the given object was not an XPC
  * integer object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 int64_t
 xpc_int64_get_value(xpc_object_t xint);
@@ -598,7 +598,7 @@ xpc_int64_get_value(xpc_object_t xint);
  * @result
  * A new unsigned integer object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_uint64_create(uint64_t value);
@@ -616,7 +616,7 @@ xpc_uint64_create(uint64_t value);
  * The underlying unsigned integer value or 0 if the given object was not an XPC
  * unsigned integer object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 uint64_t
 xpc_uint64_get_value(xpc_object_t xuint);
@@ -634,7 +634,7 @@ xpc_uint64_get_value(xpc_object_t xuint);
  * @result
  * A new floating point object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_double_create(double value);
@@ -652,7 +652,7 @@ xpc_double_create(double value);
  * The underlying floating point value or NAN if the given object was not an XPC
  * floating point object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 double
 xpc_double_get_value(xpc_object_t xdouble);
@@ -672,7 +672,7 @@ xpc_double_get_value(xpc_object_t xdouble);
  * @result
  * A new date object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_date_create(int64_t interval);
@@ -686,7 +686,7 @@ xpc_date_create(int64_t interval);
  * @result
  * A new date object representing the current date.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_date_create_from_current(void);
@@ -704,7 +704,7 @@ xpc_date_create_from_current(void);
  * The underlying date interval or 0 if the given object was not an XPC date
  * object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 int64_t
 xpc_date_get_value(xpc_object_t xdate);
@@ -725,13 +725,13 @@ xpc_date_get_value(xpc_object_t xdate);
  * The number of bytes which are to be boxed.
  *
  * @result
- * A new data object. 
+ * A new data object.
  *
  * @discussion
  * This method will copy the buffer given into internal storage. After calling
  * this method, it is safe to dispose of the given buffer.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_data_create(const void * _Nullable bytes, size_t length);
@@ -748,14 +748,14 @@ xpc_data_create(const void * _Nullable bytes, size_t length);
  * is retained by the data object.
  *
  * @result
- * A new data object. 
+ * A new data object.
  *
  * @discussion
  * The object returned by this method will refer to the buffer returned by
  * dispatch_data_create_map(). The point where XPC will make the call to
  * dispatch_data_create_map() is undefined.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL1
 xpc_object_t
 xpc_data_create_with_dispatch_data(dispatch_data_t ddata);
@@ -773,7 +773,7 @@ xpc_data_create_with_dispatch_data(dispatch_data_t ddata);
  * The length of the underlying boxed data or 0 if the given object was not an
  * XPC data object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 size_t
 xpc_data_get_length(xpc_object_t xdata);
@@ -791,7 +791,7 @@ xpc_data_get_length(xpc_object_t xdata);
  * A pointer to the underlying boxed data or NULL if the given object was not an
  * XPC data object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 const void * _Nullable
 xpc_data_get_bytes_ptr(xpc_object_t xdata);
@@ -809,7 +809,7 @@ xpc_data_get_bytes_ptr(xpc_object_t xdata);
  * The buffer in which to copy the data object's bytes.
  *
  * @param off
- * The offset at which to begin the copy. If this offset is greater than the 
+ * The offset at which to begin the copy. If this offset is greater than the
  * length of the data element, nothing is copied. Pass 0 to start the copy
  * at the beginning of the buffer.
  *
@@ -820,10 +820,10 @@ xpc_data_get_bytes_ptr(xpc_object_t xdata);
  * The number of bytes that were copied into the buffer or 0 if the given object
  * was not an XPC data object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1 XPC_NONNULL2
 size_t
-xpc_data_get_bytes(xpc_object_t xdata, 
+xpc_data_get_bytes(xpc_object_t xdata,
 	void *buffer, size_t off, size_t length);
 
 #pragma mark String
@@ -837,9 +837,9 @@ xpc_data_get_bytes(xpc_object_t xdata,
  * The C-string which is to be boxed.
  *
  * @result
- * A new string object. 
+ * A new string object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL1
 xpc_object_t
 xpc_string_create(const char *string);
@@ -859,9 +859,9 @@ xpc_string_create(const char *string);
  * The arguments which correspond to those specified in the format string.
  *
  * @result
- * A new string object. 
+ * A new string object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL1
 XPC_PRINTF(1, 2)
 xpc_object_t
@@ -883,9 +883,9 @@ xpc_string_create_with_format(const char *fmt, ...);
  * string.
  *
  * @result
- * A new string object. 
+ * A new string object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL1
 XPC_PRINTF(1, 0)
 xpc_object_t
@@ -901,10 +901,10 @@ xpc_string_create_with_format_and_arguments(const char *fmt, va_list ap);
  * The string object which is to be examined.
  *
  * @result
- * The length of the underlying string, not including the NUL-terminator, or 0 
+ * The length of the underlying string, not including the NUL-terminator, or 0
  * if the given object was not an XPC string object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 size_t
 xpc_string_get_length(xpc_object_t xstring);
@@ -922,7 +922,7 @@ xpc_string_get_length(xpc_object_t xstring);
  * A pointer to the string object's internal storage or NULL if the given object
  * was not an XPC string object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 const char * _Nullable
 xpc_string_get_string_ptr(xpc_object_t xstring);
@@ -939,9 +939,9 @@ xpc_string_get_string_ptr(xpc_object_t xstring);
  * The UUID which is to be boxed.
  *
  * @result
- * A new UUID object. 
+ * A new UUID object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL1
 xpc_object_t
 xpc_uuid_create(const uuid_t XPC_NONNULL_ARRAY uuid);
@@ -954,13 +954,13 @@ xpc_uuid_create(const uuid_t XPC_NONNULL_ARRAY uuid);
  *
  * @param xuuid
  * The UUID object which is to be examined.
- * 
+ *
  * @result
  * The underlying <code>uuid_t</code> bytes or NULL if the given object was not
  * an XPC UUID object. The returned pointer may be safely passed to the uuid(3)
  * APIs.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 const uint8_t * _Nullable
 xpc_uuid_get_bytes(xpc_object_t xuuid);
@@ -994,7 +994,7 @@ xpc_uuid_get_bytes(xpc_object_t xuuid);
  * This also implies that two collections containing file descriptor objects
  * cannot be equal unless the exact same object was inserted into both.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t _Nullable
 xpc_fd_create(int fd);
@@ -1011,7 +1011,7 @@ xpc_fd_create(int fd);
  *
  * @result
  * A file descriptor that is equivalent to the one originally given to
- * xpc_fd_create(). If the descriptor could not be created or if the given 
+ * xpc_fd_create(). If the descriptor could not be created or if the given
  * object was not an XPC file descriptor, -1 is returned.
  *
  * @discussion
@@ -1021,7 +1021,7 @@ xpc_fd_create(int fd);
  *
  * The caller is responsible for calling close(2) on the returned descriptor.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 int
 xpc_fd_dup(xpc_object_t xfd);
@@ -1061,7 +1061,7 @@ xpc_fd_dup(xpc_object_t xfd);
  * operations until the shared memory object has been created so that the VM
  * system knows that the entire range is intended for sharing.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL1
 xpc_object_t
 xpc_shmem_create(void *region, size_t length);
@@ -1082,7 +1082,7 @@ xpc_shmem_create(void *region, size_t length);
  *
  * @result
  * The length of the region that was mapped. If the mapping failed or if the
- * given object was not an XPC shared memory object, 0 is returned. The length 
+ * given object was not an XPC shared memory object, 0 is returned. The length
  * of the mapped region will always be an integral page size, even if the
  * creator of the region specified a non-integral page size.
  *
@@ -1090,9 +1090,9 @@ xpc_shmem_create(void *region, size_t length);
  * The resulting region must be disposed of with munmap(2).
  *
  * It is the responsibility of the caller to manage protections on the new
- * region accordingly. 
+ * region accordingly.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 size_t
 xpc_shmem_map(xpc_object_t xshmem, void * _Nullable * _Nonnull region);
@@ -1113,7 +1113,7 @@ xpc_shmem_map(xpc_object_t xshmem, void * _Nullable * _Nonnull region);
  */
 #ifdef __BLOCKS__
 typedef bool (^xpc_array_applier_t)(size_t index, xpc_object_t _Nonnull value);
-#endif // __BLOCKS__ 
+#endif // __BLOCKS__
 
 /*!
  * @function xpc_array_create
@@ -1138,9 +1138,9 @@ typedef bool (^xpc_array_applier_t)(size_t index, xpc_object_t _Nonnull value);
  * the the actual number of values, the behavior is undefined.
  *
  * @result
- * A new array object. 
+ * A new array object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_array_create(const xpc_object_t _Nonnull * _Nullable objects, size_t count);
@@ -1158,13 +1158,13 @@ xpc_array_create(const xpc_object_t _Nonnull * _Nullable objects, size_t count);
  * The index at which to insert the value. This value must lie within the index
  * space of the array (0 to N-1 inclusive, where N is the count of the array).
  * If the index is outside that range, the behavior is undefined.
- * 
+ *
  * @param value
  * The object to insert. This value is retained by the array and cannot be
  * NULL. If there is already a value at the specified index, it is released,
  * and the new value is inserted in its place.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL3
 void
 xpc_array_set_value(xpc_object_t xarray, size_t index, xpc_object_t value);
@@ -1181,7 +1181,7 @@ xpc_array_set_value(xpc_object_t xarray, size_t index, xpc_object_t value);
  * @param value
  * The object to append. This object is retained by the array.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2
 void
 xpc_array_append_value(xpc_object_t xarray, xpc_object_t value);
@@ -1196,10 +1196,10 @@ xpc_array_append_value(xpc_object_t xarray, xpc_object_t value);
  * The array object which is to be examined.
  *
  * @result
- * The count of values in the array or 0 if the given object was not an XPC 
+ * The count of values in the array or 0 if the given object was not an XPC
  * array.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 size_t
 xpc_array_get_count(xpc_object_t xarray);
@@ -1216,7 +1216,7 @@ xpc_array_get_count(xpc_object_t xarray);
  * @param index
  * The index of the value to obtain. This value must lie within the range of
  * indexes as specified in xpc_array_set_value().
- * 
+ *
  * @result
  * The object at the specified index within the array or NULL if the given
  * object was not an XPC array.
@@ -1225,7 +1225,7 @@ xpc_array_get_count(xpc_object_t xarray);
  * This method does not grant the caller a reference to the underlying object,
  * and thus the caller is not responsible for releasing the object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL_ALL
 xpc_object_t
 xpc_array_get_value(xpc_object_t xarray, size_t index);
@@ -1241,7 +1241,7 @@ xpc_array_get_value(xpc_object_t xarray, size_t index);
  *
  * @param applier
  * The block which this function applies to every element in the array.
- * 
+ *
  * @result
  * A Boolean indicating whether iteration of the array completed successfully.
  * Iteration will only fail if the applier block returns false.
@@ -1251,11 +1251,11 @@ xpc_array_get_value(xpc_object_t xarray, size_t index);
  * are iterated in order.
  */
 #ifdef __BLOCKS__
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL_ALL
 bool
 xpc_array_apply(xpc_object_t xarray, XPC_NOESCAPE xpc_array_applier_t applier);
-#endif // __BLOCKS__ 
+#endif // __BLOCKS__
 
 #pragma mark Array Primitive Setters
 /*!
@@ -1286,7 +1286,7 @@ xpc_array_apply(xpc_object_t xarray, XPC_NOESCAPE xpc_array_applier_t applier);
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_array_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 void
 xpc_array_set_bool(xpc_object_t xarray, size_t index, bool value);
@@ -1311,7 +1311,7 @@ xpc_array_set_bool(xpc_object_t xarray, size_t index, bool value);
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_array_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 void
 xpc_array_set_int64(xpc_object_t xarray, size_t index, int64_t value);
@@ -1336,7 +1336,7 @@ xpc_array_set_int64(xpc_object_t xarray, size_t index, int64_t value);
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_array_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 void
 xpc_array_set_uint64(xpc_object_t xarray, size_t index, uint64_t value);
@@ -1361,7 +1361,7 @@ xpc_array_set_uint64(xpc_object_t xarray, size_t index, uint64_t value);
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_array_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 void
 xpc_array_set_double(xpc_object_t xarray, size_t index, double value);
@@ -1382,11 +1382,11 @@ xpc_array_set_double(xpc_object_t xarray, size_t index, double value);
  * undefined.
  *
  * @param value
- * The date value to insert, represented as an <code>int64_t</code>. After 
- * calling this method, the XPC object corresponding to the primitive value 
+ * The date value to insert, represented as an <code>int64_t</code>. After
+ * calling this method, the XPC object corresponding to the primitive value
  * inserted may be safely retrieved with {@link xpc_array_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 void
 xpc_array_set_date(xpc_object_t xarray, size_t index, int64_t value);
@@ -1414,7 +1414,7 @@ xpc_array_set_date(xpc_object_t xarray, size_t index, int64_t value);
  * @param length
  * The length of the data.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL3
 void
 xpc_array_set_data(xpc_object_t xarray, size_t index, const void *bytes,
@@ -1440,7 +1440,7 @@ xpc_array_set_data(xpc_object_t xarray, size_t index, const void *bytes,
  * corresponding to the primitive value inserted may be safely retrieved with
  * {@link xpc_array_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL3
 void
 xpc_array_set_string(xpc_object_t xarray, size_t index, const char *string);
@@ -1465,7 +1465,7 @@ xpc_array_set_string(xpc_object_t xarray, size_t index, const char *string);
  * corresponding to the primitive value inserted may be safely retrieved with
  * {@link xpc_array_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL3
 void
 xpc_array_set_uuid(xpc_object_t xarray, size_t index,
@@ -1491,7 +1491,7 @@ xpc_array_set_uuid(xpc_object_t xarray, size_t index,
  * corresponding to the primitive value inserted may be safely retrieved with
  * {@link xpc_array_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1
 void
 xpc_array_set_fd(xpc_object_t xarray, size_t index, int fd);
@@ -1516,7 +1516,7 @@ xpc_array_set_fd(xpc_object_t xarray, size_t index, int fd);
  * corresponding to the primitive value inserted may be safely retrieved with
  * {@link xpc_array_get_value()}. The connection is NOT retained by the array.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL3
 void
 xpc_array_set_connection(xpc_object_t xarray, size_t index,
@@ -1541,7 +1541,7 @@ xpc_array_set_connection(xpc_object_t xarray, size_t index,
  * The underlying <code>bool</code> value at the specified index. false if the
  * value at the specified index is not a Boolean value.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 bool
 xpc_array_get_bool(xpc_object_t xarray, size_t index);
@@ -1562,9 +1562,9 @@ xpc_array_get_bool(xpc_object_t xarray, size_t index);
  *
  * @result
  * The underlying <code>int64_t</code> value at the specified index. 0 if the
- * value at the specified index is not a signed integer value. 
+ * value at the specified index is not a signed integer value.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 int64_t
 xpc_array_get_int64(xpc_object_t xarray, size_t index);
@@ -1587,7 +1587,7 @@ xpc_array_get_int64(xpc_object_t xarray, size_t index);
  * The underlying <code>uint64_t</code> value at the specified index. 0 if the
  * value at the specified index is not an unsigned integer value.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 uint64_t
 xpc_array_get_uint64(xpc_object_t xarray, size_t index);
@@ -1610,7 +1610,7 @@ xpc_array_get_uint64(xpc_object_t xarray, size_t index);
  * The underlying <code>double</code> value at the specified index. NAN if the
  * value at the specified index is not a floating point value.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 double
 xpc_array_get_double(xpc_object_t xarray, size_t index);
@@ -1633,7 +1633,7 @@ xpc_array_get_double(xpc_object_t xarray, size_t index);
  * The underlying date interval at the specified index. 0 if the value at the
  * specified index is not a date value.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 int64_t
 xpc_array_get_date(xpc_object_t xarray, size_t index);
@@ -1660,7 +1660,7 @@ xpc_array_get_date(xpc_object_t xarray, size_t index);
  * The underlying bytes at the specified index. NULL if the value at the
  * specified index is not a data value.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 const void * _Nullable
 xpc_array_get_data(xpc_object_t xarray, size_t index,
@@ -1684,7 +1684,7 @@ xpc_array_get_data(xpc_object_t xarray, size_t index,
  * The underlying C string at the specified index. NULL if the value at the
  * specified index is not a C string value.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 const char * _Nullable
 xpc_array_get_string(xpc_object_t xarray, size_t index);
@@ -1708,7 +1708,7 @@ xpc_array_get_string(xpc_object_t xarray, size_t index);
  * UUID if the value at the specified index is not a UUID value. The returned
  * pointer may be safely passed to the uuid(3) APIs.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 const uint8_t * _Nullable
 xpc_array_get_uuid(xpc_object_t xarray, size_t index);
@@ -1732,7 +1732,7 @@ xpc_array_get_uuid(xpc_object_t xarray, size_t index);
  * responsible for close(2)ing this descriptor. -1 if the value at the specified
  * index is not a file descriptor value.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 int
 xpc_array_dup_fd(xpc_object_t xarray, size_t index);
@@ -1760,7 +1760,7 @@ xpc_array_dup_fd(xpc_object_t xarray, size_t index);
  * discussion as to the responsibilities when dealing with the returned
  * connection.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL1
 xpc_connection_t _Nullable
 xpc_array_create_connection(xpc_object_t xarray, size_t index);
@@ -1777,7 +1777,7 @@ xpc_array_create_connection(xpc_object_t xarray, size_t index);
  * @param index
  * The index of the value to obtain. This value must lie within the range of
  * indexes as specified in xpc_array_set_value().
- * 
+ *
  * @result
  * The object at the specified index within the array or NULL if the given
  * object was not an XPC array or if the the value at the specified index was
@@ -1787,7 +1787,7 @@ xpc_array_create_connection(xpc_object_t xarray, size_t index);
  * This method does not grant the caller a reference to the underlying object,
  * and thus the caller is not responsible for releasing the object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_11, __IPHONE_9_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_11, __IPHONE_9_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 xpc_object_t _Nullable
 xpc_array_get_dictionary(xpc_object_t xarray, size_t index);
@@ -1804,7 +1804,7 @@ xpc_array_get_dictionary(xpc_object_t xarray, size_t index);
  * @param index
  * The index of the value to obtain. This value must lie within the range of
  * indexes as specified in xpc_array_set_value().
- * 
+ *
  * @result
  * The object at the specified index within the array or NULL if the given
  * object was not an XPC array or if the the value at the specified index was
@@ -1814,7 +1814,7 @@ xpc_array_get_dictionary(xpc_object_t xarray, size_t index);
  * This method does not grant the caller a reference to the underlying object,
  * and thus the caller is not responsible for releasing the object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_11, __IPHONE_9_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_11, __IPHONE_9_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 xpc_object_t _Nullable
 xpc_array_get_array(xpc_object_t xarray, size_t index);
@@ -1836,7 +1836,7 @@ xpc_array_get_array(xpc_object_t xarray, size_t index);
 #ifdef __BLOCKS__
 typedef bool (^xpc_dictionary_applier_t)(const char * _Nonnull key,
 		xpc_object_t _Nonnull value);
-#endif // __BLOCKS__ 
+#endif // __BLOCKS__
 
 /*!
  * @function xpc_dictionary_create
@@ -1861,14 +1861,14 @@ typedef bool (^xpc_dictionary_applier_t)(const char * _Nonnull key,
  * into the dictionary.
  *
  * If the count is more than the the actual count of key/value pairs, the
- * behavior is undefined. If one array is NULL and the other is not, the 
+ * behavior is undefined. If one array is NULL and the other is not, the
  * behavior is undefined. If both arrays are NULL and the count is non-0, the
  * behavior is undefined.
  *
  * @result
  * The new dictionary object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT
 xpc_object_t
 xpc_dictionary_create(const char * _Nonnull const * _Nullable keys,
@@ -1876,7 +1876,7 @@ xpc_dictionary_create(const char * _Nonnull const * _Nullable keys,
 
 /*!
  * @function xpc_dictionary_create_reply
- * 
+ *
  * @abstract
  * Creates a dictionary that is in reply to the given dictionary.
  *
@@ -1894,7 +1894,7 @@ xpc_dictionary_create(const char * _Nonnull const * _Nullable keys,
  * When this dictionary is sent across the reply connection, the remote end's
  * reply handler is invoked.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL_ALL
 xpc_object_t _Nullable
 xpc_dictionary_create_reply(xpc_object_t original);
@@ -1917,7 +1917,7 @@ xpc_dictionary_create_reply(xpc_object_t original);
  * and overwritten by the new value. This parameter may be NULL, in which case
  * the value corresponding to the specified key is deleted if present.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2
 void
 xpc_dictionary_set_value(xpc_object_t xdict, const char *key,
@@ -1934,7 +1934,7 @@ xpc_dictionary_set_value(xpc_object_t xdict, const char *key,
  *
  * @param key
  * The key whose value is to be obtained.
- * 
+ *
  * @result
  * The object for the specified key within the dictionary. NULL if there is no
  * value associated with the specified key or if the given object was not an
@@ -1944,7 +1944,7 @@ xpc_dictionary_set_value(xpc_object_t xdict, const char *key,
  * This method does not grant the caller a reference to the underlying object,
  * and thus the caller is not responsible for releasing the object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1 XPC_NONNULL2
 xpc_object_t _Nullable
 xpc_dictionary_get_value(xpc_object_t xdict, const char *key);
@@ -1959,12 +1959,12 @@ xpc_dictionary_get_value(xpc_object_t xdict, const char *key);
  * The dictionary object which is to be examined.
  *
  * @result
- * The number of values stored in the dictionary or 0 if the given object was 
+ * The number of values stored in the dictionary or 0 if the given object was
  * not an XPC dictionary. Calling xpc_dictionary_set_value() with a non-NULL
- * value will increment the count. Calling xpc_dictionary_set_value() with a 
+ * value will increment the count. Calling xpc_dictionary_set_value() with a
  * NULL value will decrement the count.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 size_t
 xpc_dictionary_get_count(xpc_object_t xdict);
@@ -1979,9 +1979,9 @@ xpc_dictionary_get_count(xpc_object_t xdict);
  * The dictionary object which is to be examined.
  *
  * @param applier
- * The block which this function applies to every key/value pair in the 
+ * The block which this function applies to every key/value pair in the
  * dictionary.
- * 
+ *
  * @result
  * A Boolean indicating whether iteration of the dictionary completed
  * successfully. Iteration will only fail if the applier block returns false.
@@ -1991,12 +1991,12 @@ xpc_dictionary_get_count(xpc_object_t xdict);
  * guaranteed order of iteration over dictionaries.
  */
 #ifdef __BLOCKS__
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL_ALL
 bool
 xpc_dictionary_apply(xpc_object_t xdict,
 		XPC_NOESCAPE xpc_dictionary_applier_t applier);
-#endif // __BLOCKS__ 
+#endif // __BLOCKS__
 
 /*!
  * @function xpc_dictionary_get_remote_connection
@@ -2013,7 +2013,7 @@ xpc_dictionary_apply(xpc_object_t xdict,
  * a reply message can be sent is returned. For any other dictionary, NULL is
  * returned.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 xpc_connection_t _Nullable
 xpc_dictionary_get_remote_connection(xpc_object_t xdict);
@@ -2036,7 +2036,7 @@ xpc_dictionary_get_remote_connection(xpc_object_t xdict);
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_dictionary_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2
 void
 xpc_dictionary_set_bool(xpc_object_t xdict, const char *key, bool value);
@@ -2058,7 +2058,7 @@ xpc_dictionary_set_bool(xpc_object_t xdict, const char *key, bool value);
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_dictionary_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2
 void
 xpc_dictionary_set_int64(xpc_object_t xdict, const char *key, int64_t value);
@@ -2080,7 +2080,7 @@ xpc_dictionary_set_int64(xpc_object_t xdict, const char *key, int64_t value);
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_dictionary_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2
 void
 xpc_dictionary_set_uint64(xpc_object_t xdict, const char *key, uint64_t value);
@@ -2102,7 +2102,7 @@ xpc_dictionary_set_uint64(xpc_object_t xdict, const char *key, uint64_t value);
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_dictionary_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2
 void
 xpc_dictionary_set_double(xpc_object_t xdict, const char *key, double value);
@@ -2124,7 +2124,7 @@ xpc_dictionary_set_double(xpc_object_t xdict, const char *key, double value);
  * corresponding to the primitive value inserted may be safely retrieved with
  * {@link xpc_dictionary_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2
 void
 xpc_dictionary_set_date(xpc_object_t xdict, const char *key, int64_t value);
@@ -2149,7 +2149,7 @@ xpc_dictionary_set_date(xpc_object_t xdict, const char *key, int64_t value);
  * @param length
  * The length of the data.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2 XPC_NONNULL3
 void
 xpc_dictionary_set_data(xpc_object_t xdict, const char *key, const void *bytes,
@@ -2168,11 +2168,11 @@ xpc_dictionary_set_data(xpc_object_t xdict, const char *key, const void *bytes,
  * The key for which the primitive value shall be set.
  *
  * @param string
- * The C string to insert. After calling this method, the XPC object 
+ * The C string to insert. After calling this method, the XPC object
  * corresponding to the primitive value inserted may be safely retrieved with
  * {@link xpc_dictionary_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2 XPC_NONNULL3
 void
 xpc_dictionary_set_string(xpc_object_t xdict, const char *key,
@@ -2195,7 +2195,7 @@ xpc_dictionary_set_string(xpc_object_t xdict, const char *key,
  * object corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_dictionary_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2 XPC_NONNULL3
 void
 xpc_dictionary_set_uuid(xpc_object_t xdict, const char *key,
@@ -2218,7 +2218,7 @@ xpc_dictionary_set_uuid(xpc_object_t xdict, const char *key,
  * corresponding to the primitive value inserted may be safely retrieved
  * with {@link xpc_dictionary_get_value()}.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2
 void
 xpc_dictionary_set_fd(xpc_object_t xdict, const char *key, int fd);
@@ -2241,7 +2241,7 @@ xpc_dictionary_set_fd(xpc_object_t xdict, const char *key, int fd);
  * with {@link xpc_dictionary_get_value()}. The connection is NOT retained by
  * the dictionary.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL2 XPC_NONNULL3
 void
 xpc_dictionary_set_connection(xpc_object_t xdict, const char *key,
@@ -2265,7 +2265,7 @@ xpc_dictionary_set_connection(xpc_object_t xdict, const char *key,
  * the value for the specified key is not a Boolean value or if there is no
  * value for the specified key.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 bool
 xpc_dictionary_get_bool(xpc_object_t xdict, const char *key);
@@ -2287,7 +2287,7 @@ xpc_dictionary_get_bool(xpc_object_t xdict, const char *key);
  * value for the specified key is not a signed integer value or if there is no
  * value for the specified key.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 int64_t
 xpc_dictionary_get_int64(xpc_object_t xdict, const char *key);
@@ -2309,7 +2309,7 @@ xpc_dictionary_get_int64(xpc_object_t xdict, const char *key);
  * value for the specified key is not an unsigned integer value or if there is
  * no value for the specified key.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 uint64_t
 xpc_dictionary_get_uint64(xpc_object_t xdict, const char *key);
@@ -2331,7 +2331,7 @@ xpc_dictionary_get_uint64(xpc_object_t xdict, const char *key);
  * value for the specified key is not a floating point value or if there is no
  * value for the specified key.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 double
 xpc_dictionary_get_double(xpc_object_t xdict, const char *key);
@@ -2353,7 +2353,7 @@ xpc_dictionary_get_double(xpc_object_t xdict, const char *key);
  * specified key is not a date value or if there is no value for the specified
  * key.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 int64_t
 xpc_dictionary_get_date(xpc_object_t xdict, const char *key);
@@ -2379,7 +2379,7 @@ xpc_dictionary_get_date(xpc_object_t xdict, const char *key);
  * specified key is not a data value or if there is no value for the specified
  * key.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1
 const void * _Nullable
 xpc_dictionary_get_data(xpc_object_t xdict, const char *key,
@@ -2402,7 +2402,7 @@ xpc_dictionary_get_data(xpc_object_t xdict, const char *key,
  * specified key is not a C string value or if there is no value for the
  * specified key.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 const char * _Nullable
 xpc_dictionary_get_string(xpc_object_t xdict, const char *key);
@@ -2424,7 +2424,7 @@ xpc_dictionary_get_string(xpc_object_t xdict, const char *key);
  * value at the specified index is not a UUID value. The returned pointer may be
  * safely passed to the uuid(3) APIs.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL1 XPC_NONNULL2
 const uint8_t * _Nullable
 xpc_dictionary_get_uuid(xpc_object_t xdict, const char *key);
@@ -2447,7 +2447,7 @@ xpc_dictionary_get_uuid(xpc_object_t xdict, const char *key);
  * specified key is not a file descriptor value or if there is no value for the
  * specified key.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 int
 xpc_dictionary_dup_fd(xpc_object_t xdict, const char *key);
@@ -2473,7 +2473,7 @@ xpc_dictionary_dup_fd(xpc_object_t xdict, const char *key);
  * {@link xpc_connection_create_from_endpoint()} for discussion as to the
  * responsibilities when dealing with the returned connection.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_MALLOC XPC_RETURNS_RETAINED XPC_WARN_RESULT XPC_NONNULL_ALL
 xpc_connection_t _Nullable
 xpc_dictionary_create_connection(xpc_object_t xdict, const char *key);
@@ -2489,7 +2489,7 @@ xpc_dictionary_create_connection(xpc_object_t xdict, const char *key);
  *
  * @param key
  * The key whose value is to be obtained.
- * 
+ *
  * @result
  * The object for the specified key within the dictionary. NULL if there is no
  * value associated with the specified key, if the given object was not an
@@ -2499,7 +2499,7 @@ xpc_dictionary_create_connection(xpc_object_t xdict, const char *key);
  * This method does not grant the caller a reference to the underlying object,
  * and thus the caller is not responsible for releasing the object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_11, __IPHONE_9_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_11, __IPHONE_9_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 xpc_object_t _Nullable
 xpc_dictionary_get_dictionary(xpc_object_t xdict, const char *key);
@@ -2515,7 +2515,7 @@ xpc_dictionary_get_dictionary(xpc_object_t xdict, const char *key);
  *
  * @param key
  * The key whose value is to be obtained.
- * 
+ *
  * @result
  * The object for the specified key within the dictionary. NULL if there is no
  * value associated with the specified key, if the given object was not an
@@ -2525,7 +2525,7 @@ xpc_dictionary_get_dictionary(xpc_object_t xdict, const char *key);
  * This method does not grant the caller a reference to the underlying object,
  * and thus the caller is not responsible for releasing the object.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_11, __IPHONE_9_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_11, __IPHONE_9_0)
 XPC_EXPORT XPC_WARN_RESULT XPC_NONNULL_ALL
 xpc_object_t _Nullable
 xpc_dictionary_get_array(xpc_object_t xdict, const char *key);
@@ -2542,7 +2542,7 @@ xpc_dictionary_get_array(xpc_object_t xdict, const char *key);
  * @param handler
  * The handler with which to accept new connections.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NORETURN XPC_NONNULL1
 void
 xpc_main(xpc_connection_handler_t handler);
@@ -2562,7 +2562,7 @@ xpc_service_main(int argc, const char *argv[],
  * @function xpc_transaction_begin
  * Informs the XPC runtime that a transaction has begun and that the service
  * should not exit due to inactivity.
- * 
+ *
  * @discussion
  * A service with no outstanding transactions may automatically exit due to
  * inactivity as determined by the system.
@@ -2588,7 +2588,7 @@ xpc_service_main(int argc, const char *argv[],
  * connection's event handler, no more messages will be delivered to the
  * connection.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 void
 xpc_transaction_begin(void);
@@ -2596,7 +2596,7 @@ xpc_transaction_begin(void);
 /*!
  * @function xpc_transaction_end
  * Informs the XPC runtime that a transaction has ended.
- * 
+ *
  * @discussion
  * As described in {@link xpc_transaction_begin()}, this API may be used
  * interchangeably with vproc_transaction_end().
@@ -2604,7 +2604,7 @@ xpc_transaction_begin(void);
  * See the discussion for {@link xpc_transaction_begin()} for details regarding
  * the XPC runtime's idle-exit policy.
  */
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT
 void
 xpc_transaction_end(void);
@@ -2621,7 +2621,7 @@ xpc_transaction_end(void);
  * The GCD queue to which the event handler block will be submitted. This
  * parameter may be NULL, in which case the connection's target queue will be
  * libdispatch's default target queue, defined as DISPATCH_TARGET_QUEUE_DEFAULT.
- * 
+ *
  * @param handler
  * The event handler block. The event which this block receives as its first
  * parameter will always be a dictionary which contains the XPC_EVENT_KEY_NAME
@@ -2634,14 +2634,14 @@ xpc_transaction_end(void);
  * undefined behavior.
  */
 #if __BLOCKS__
-__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
+// __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_5_0)
 XPC_EXPORT XPC_NONNULL1 XPC_NONNULL3
 void
 xpc_set_event_stream_handler(const char *stream,
 	dispatch_queue_t _Nullable targetq, xpc_handler_t handler);
-#endif // __BLOCKS__ 
+#endif // __BLOCKS__
 
 __END_DECLS
 XPC_ASSUME_NONNULL_END
 
-#endif // __XPC_H__ 
+#endif // __XPC_H__

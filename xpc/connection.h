@@ -336,8 +336,8 @@ xpc_connection_set_event_handler(xpc_connection_t connection,
  * xpc_connection_activate(). For new code, using xpc_connection_activate()
  * is preferred.
  */
-__OSX_AVAILABLE(10.12) __IOS_AVAILABLE(10.0)
-__TVOS_AVAILABLE(10.0) __WATCHOS_AVAILABLE(3.0)
+// __OSX_AVAILABLE(10.12) __IOS_AVAILABLE(10.0)
+// __TVOS_AVAILABLE(10.0) __WATCHOS_AVAILABLE(3.0)
 XPC_EXPORT XPC_NONNULL_ALL
 void
 xpc_connection_activate(xpc_connection_t connection);
